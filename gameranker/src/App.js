@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import index from "./pages/Login/index";
+import { Routes, Route } from "react-router-dom";
+import Auth from "./pages/Login/Auth";
+import PrivateOutlet from "./components/privateOutlet";
+import Home from "./pages/home";
+import Button from "./components/button";
+import Rankings from "./pages/rankings";
+import Userhome from "./pages/userhome";
+import { useLogin } from "./hooks/useLogin";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Auth />} />
+      <Route path="/user" element={<PrivateOutlet />}>
+        <Route path="home" element={<Userhome />} />
+        <Route path="rankings" element={<Rankings />} />
+      </Route>
+    </Routes>
   );
 }
 
